@@ -169,3 +169,18 @@ MAX(data[Srazky])
 CALCULATE(
     MAX(data[Srazky]),
 ALL(dim_lokality[Lokalita])), "nejdestivejsi","ostatni")
+
+_________________________________________________________________
+
+dim_datumy = 
+ADDCOLUMNS(
+    SELECTCOLUMNS(
+    CALENDARAUTO(),
+    "datum",
+    [Date]),
+"rok",YEAR([datum]),
+"kvartal",QUARTER([datum]),
+"mesic",MONTH([datum]),
+"konec_mesice",EOMONTH([datum],0))
+
+
