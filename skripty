@@ -107,3 +107,11 @@ CALCULATE(
     SUM(data[Srazky]),
 data[Lokalita] = "RUZYNE" &&
 data[mesic] <= SELECTEDVALUE(data[mesic]))
+
+_____________________________________________________________
+
+10 suma srazek kumulativne = 
+CALCULATE(
+    SUM(data[Srazky]),
+ALL(data[mesic],data[rok]),
+data[Datum] <= MAX(data[Datum]))
