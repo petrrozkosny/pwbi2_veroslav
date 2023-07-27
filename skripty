@@ -121,3 +121,16 @@ CALCULATE(
     SUM(data[Srazky]),
 ALL(data[mesic],data[rok]),
 data[Datum] <= MAX(data[Datum]))
+
+___________________________________________________________
+
+12 suma srazek mesic 1 ruzyne = 
+-- v danem roce
+CALCULATE(
+SUM(data[Srazky]),
+// FILTER(
+// ALL(data[mesic],data[Lokalita]),data[mesic] = 1
+// && data[Lokalita] = "RUZYNE")
+data[Lokalita] = "RUZYNE" && data[mesic] = 1
+
+)
