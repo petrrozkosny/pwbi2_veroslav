@@ -144,3 +144,15 @@ ______________________________________________________
 CALCULATE(
     SUM(data[Srazky]),
     ALL(dim_datumy[rok]))
+
+___________________________________________________-
+
+cv02 podil srazek = 
+
+-- suma v roce, zemi, lokalite
+SUM(data[Srazky])
+-- suma v roce, zemi
+/
+CALCULATE(
+    SUM(data[Srazky]),
+    ALL(dim_lokality[Lokalita]))
