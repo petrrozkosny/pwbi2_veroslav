@@ -31,3 +31,37 @@ _____________________________________
 -- scenar1: Respektuji vsechny filtry, zadne nerusim,
 -- nepridavam, tj. pouziji zakladni agregacni funkce
 SUM(data[Srazky])
+
+__________________________________
+
+04 suma srazek mesic 6 = 
+-- respektuji filtry vizualu, pridavam dalsi
+
+
+-- je to pomalé, zbytečně moc dat
+-- respektujeme pripadne filtry nad mesic
+-- a pridavame dalsi
+VAR varianta1 =
+CALCULATE(
+    SUM(data[Srazky]),
+    FILTER(data,
+    data[mesic] = 6))
+-- Verze 2
+-- TAKTO ANO, pokud nefunguje verze 3
+-- Pozor, tady už se zbavuji případného filtru
+-- nad sloupcem měsíc, tj. už to není scénář 2, ale
+-- scénář 4
+VAR varianta2 =
+CALCULATE(
+    SUM(data[Srazky]),
+    FILTER(ALL(data[mesic]),
+    data[mesic] = 6))
+-- TAKTO ANO
+-- verze 3
+-- Pozor, tady už se zbavuji případného filtru
+-- nad sloupcem měsíc, tj. už to není scénář 2, ale
+-- scénář 4
+VAR varianta3= 
+CALCULATE(SUM(data[Srazky]),data[mesic]  = 6)
+
+return varianta3
