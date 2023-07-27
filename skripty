@@ -183,4 +183,21 @@ ADDCOLUMNS(
 "mesic",MONTH([datum]),
 "konec_mesice",EOMONTH([datum],0))
 
+_________________________________________________________________
+
+16 suma srazek cely predchozi kvartal = 
+
+VAR kvartal  = MIN(dim_datumy[kvartal])
+VAR zacatek_kvartalu = 
+CALCULATE(MIN(dim_datumy[datum]),ALL(dim_datumy[mesic]),
+dim_datumy[kvartal] = kvartal)
+VAR zacatek_predchoziho_kvartalu = EOMONTH(zacatek_kvartalu,-4)+1
+VAR konec_predchoziho_kvatalu = EOMONTH(zacatek_predchoziho_kvartalu,3)
+
+RETURN
+CALCULATE(
+    SUM(data[Srazky]),
+    dim_datumy[datum]>=zacatek_predchoziho_kvartalu
+    && dim_datumy[datum]<=konec_predchoziho_kvatalu,
+    all(dim_datumy[rok],dim_datumy[mesic]))
 
