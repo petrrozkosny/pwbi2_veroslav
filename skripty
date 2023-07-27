@@ -97,3 +97,13 @@ data[Lokalita] = "RUZYNE")
 -- suma srazek v danem roce, mesici, vsechny lokality
 
 SUM(data[Srazky])
+
+________________________________________________________________
+
+09 srazky kumulativne ruzyne = 
+-- kumulativni suma srazek v ruzyne, v danem roce
+
+CALCULATE(
+    SUM(data[Srazky]),
+data[Lokalita] = "RUZYNE" &&
+data[mesic] <= SELECTEDVALUE(data[mesic]))
