@@ -156,3 +156,16 @@ SUM(data[Srazky])
 CALCULATE(
     SUM(data[Srazky]),
     ALL(dim_lokality[Lokalita]))
+
+__________________________________________________________
+
+cv03 nejdestivejsi lokalita kontrola = 
+IF(
+-- maximalni srazky dane zeme, lokality, roku
+
+MAX(data[Srazky])
+=
+-- maximalni srazky v roce, zemi
+CALCULATE(
+    MAX(data[Srazky]),
+ALL(dim_lokality[Lokalita])), "nejdestivejsi","ostatni")
