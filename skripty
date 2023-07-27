@@ -134,3 +134,13 @@ SUM(data[Srazky]),
 data[Lokalita] = "RUZYNE" && data[mesic] = 1
 
 )
+
+______________________________________________________
+
+13 suma srazek vsechny roky = 
+
+-- suma srazek v dane lokalite, vsechny roky
+
+CALCULATE(
+    SUM(data[Srazky]),
+    ALL(dim_datumy[rok]))
