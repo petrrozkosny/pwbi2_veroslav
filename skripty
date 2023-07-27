@@ -246,3 +246,23 @@ RETURN
 SWITCH(TRUE(),
 SUM(data[Srazky]) = max_tabulka,"CYAN",
 SUM(data[Srazky]) = min_tabulka,"GOLD")
+
+_______________________________________________________________
+
+
+21 maximalni teplota obdobi = 
+
+SWITCH(TRUE(),
+SEARCH("pololeti",SELECTEDVALUE(obdobi[obdobi]),1,0) = 0,
+CALCULATE(
+    MAX(data[Teplota]),
+    data[mesic] = CONVERT(SELECTEDVALUE(obdobi[obdobi]),INTEGER)),
+SEARCH("1. pololeti",SELECTEDVALUE(obdobi[obdobi]),1,0)>0,
+CALCULATE(
+    MAX(data[Teplota]),
+    data[mesic] <= 6),
+SEARCH("2. pololeti",SELECTEDVALUE(obdobi[obdobi]),1,0)>0,
+CALCULATE(
+    MAX(data[Teplota]),
+    data[mesic] > 6))
+
