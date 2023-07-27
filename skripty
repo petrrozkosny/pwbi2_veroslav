@@ -24,3 +24,10 @@ ___________________________
 SUMX(
     FILTER(data,data[mesic] = 6),
 data[Srazky])
+
+_____________________________________
+
+03 suma srazek = 
+-- scenar1: Respektuji vsechny filtry, zadne nerusim,
+-- nepridavam, tj. pouziji zakladni agregacni funkce
+SUM(data[Srazky])
