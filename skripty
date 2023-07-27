@@ -221,3 +221,28 @@ CONCATENATEX(
     FILTER(tabulka,
     [rocni srazky] = max_rocni_srazky),
     data[rok],", ")
+
+
+
+_____________________________________________20 podminene formatovani rocni srazky = 
+
+-- tabulka se vsemi roky dane lokality, doplnena o sloupec s rocnimi srazkami
+
+VAR tabulka = 
+    ADDCOLUMNS(
+        ALL(data[rok]),
+    "rocni srazky",
+    CALCULATE(
+    sum(data[Srazky]))
+    )
+
+VAR max_tabulka =
+MAXX(tabulka,[rocni srazky])
+
+VAR min_tabulka = 
+MINX(tabulka,[rocni srazky])
+
+RETURN
+SWITCH(TRUE(),
+SUM(data[Srazky]) = max_tabulka,"CYAN",
+SUM(data[Srazky]) = min_tabulka,"GOLD")
