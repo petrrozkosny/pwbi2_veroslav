@@ -110,6 +110,12 @@ data[mesic] <= SELECTEDVALUE(data[mesic]))
 
 _____________________________________________________________
 
+11 suma srazek predchozi rok = 
+
+CALCULATE(
+    SUM(data[Srazky]),
+data[rok] = SELECTEDVALUE(data[rok] )- 1)
+
 10 suma srazek kumulativne = 
 CALCULATE(
     SUM(data[Srazky]),
