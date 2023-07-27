@@ -65,3 +65,11 @@ VAR varianta3=
 CALCULATE(SUM(data[Srazky]),data[mesic]  = 6)
 
 return varianta3
+
+______________________________________________________________________
+
+06 suma srazek ruzyne = 
+CALCULATE(
+    SUM(data[Srazky]),
+    data[Lokalita] = "RUZYNE")
+
