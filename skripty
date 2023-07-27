@@ -201,3 +201,23 @@ CALCULATE(
     && dim_datumy[datum]<=konec_predchoziho_kvatalu,
     all(dim_datumy[rok],dim_datumy[mesic]))
 
+________________________________________________________________
+
+19 rok maximalnich srazek = 
+
+VAR tabulka = 
+ADDCOLUMNS(
+    ALL(data[rok]),
+"rocni srazky",
+CALCULATE(
+SUM(data[Srazky])))
+
+VAR max_rocni_srazky = 
+maxx(tabulka,[rocni srazky])
+
+RETURN
+
+CONCATENATEX(
+    FILTER(tabulka,
+    [rocni srazky] = max_rocni_srazky),
+    data[rok],", ")
