@@ -7,3 +7,12 @@ ALL(dim_datumy[rok]),
 ROUND(
 CALCULATE(
 SUM(data[Srazky])),2))
+
+____________________________
+
+01 suma srazek v dane lokalite za vsechny roky = 
+SUMX(
+FILTER(
+    ALL(data),
+data[Lokalita] = SELECTEDVALUE(data[Lokalita])),
+data[Srazky])
