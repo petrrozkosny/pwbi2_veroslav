@@ -16,3 +16,11 @@ FILTER(
     ALL(data),
 data[Lokalita] = SELECTEDVALUE(data[Lokalita])),
 data[Srazky])
+
+___________________________
+
+02 suma srazek mesic 6 = 
+-- v danem roce, lokalite
+SUMX(
+    FILTER(data,data[mesic] = 6),
+data[Srazky])
