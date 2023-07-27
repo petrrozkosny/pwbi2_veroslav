@@ -1,0 +1,9 @@
+dim_roky = 
+
+
+ADDCOLUMNS(
+ALL(dim_datumy[rok]),
+"srazky rocni",
+ROUND(
+CALCULATE(
+SUM(data[Srazky])),2))
