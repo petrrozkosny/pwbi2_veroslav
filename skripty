@@ -73,3 +73,13 @@ CALCULATE(
     SUM(data[Srazky]),
     data[Lokalita] = "RUZYNE")
 
+_______________________________________________________________________
+07 podil srazek v roce = 
+-- suma srazek v danem roce, mesici
+SUM(data[Srazky])
+-- deleno
+/
+-- suma srazek v danem roce, vsech mesicich
+CALCULATE(
+    SUM(data[Srazky]),
+ALL(data[mesic]))
