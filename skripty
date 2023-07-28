@@ -266,3 +266,11 @@ CALCULATE(
     MAX(data[Teplota]),
     data[mesic] > 6))
 
+______________________________________
+
+23 kumulativni suma srazek predchozi rok = 
+CALCULATE(
+    SUM(data[Srazky]),
+dim_datumy[rok] = SELECTEDVALUE(dim_datumy[rok]) - 1
+&& dim_datumy[mesic] <= SELECTEDVALUE(dim_datumy[mesic]))
+
