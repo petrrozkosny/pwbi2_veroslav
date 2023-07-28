@@ -313,3 +313,36 @@ dim_datumy[mesic] <= SELECTEDVALUE(dim_datumy[mesic])
 && dim_datumy[rok] = max_rok_max_srazek)))
 
 ________________________________________________________
+
+
+25 kumulativni suma srazek nejmene destivy rok = 
+VAR tabulka = 
+
+-- tabulka se dvemi sloupci, v jednom budou roky, ve druhém roční srážky
+
+ADDCOLUMNS(
+ALL(dim_datumy[rok]),
+"rocni srazky",
+CALCULATE(SUM(data[Srazky]),ALL(dim_datumy[mesic])))
+
+VAR minimalni_rocni_srazky = 
+MINX(
+    tabulka,
+    [rocni srazky])
+
+VAR max_rok_max_srazek = 
+MAXX(
+    FILTER(
+    tabulka,
+    [rocni srazky] = minimalni_rocni_srazky),
+    dim_datumy[rok])
+
+RETURN
+IF(NOT ISFILTERED(typ_obdobi[typ_obdobi]),BLANK(),
+IF(
+   NOT "nejméně deštivý rok" IN VALUES(typ_obdobi[typ_obdobi]),BLANK(),
+CALCULATE(
+    SUM(data[Srazky]),
+dim_datumy[mesic] <= SELECTEDVALUE(dim_datumy[mesic])
+&& dim_datumy[rok] = max_rok_max_srazek)))
+
