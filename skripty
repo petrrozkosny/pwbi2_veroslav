@@ -267,69 +267,15 @@ CALCULATE(
     data[mesic] > 6))
 
 ______________________________________
-
 23 kumulativni suma srazek predchozi rok = 
+IF(NOT ISFILTERED(typ_obdobi[typ_obdobi]),BLANK(),
+IF(
+   NOT "předchozí rok" IN VALUES(typ_obdobi[typ_obdobi]),BLANK(),
 CALCULATE(
     SUM(data[Srazky]),
 dim_datumy[rok] = SELECTEDVALUE(dim_datumy[rok]) - 1
 && dim_datumy[mesic] <= SELECTEDVALUE(dim_datumy[mesic]))
 
-___________________________________________________
-24 kumulativni suma srazek nejdestivejsi rok = 
-VAR tabulka = 
+))
 
--- tabulka se dvemi sloupci, v jednom budou roky, ve druhém roční srážky
-
-ADDCOLUMNS(
-ALL(dim_datumy[rok]),
-"rocni srazky",
-CALCULATE(SUM(data[Srazky]),ALL(dim_datumy[mesic])))
-
-VAR maximalni_rocni_srazky = 
-MAXX(
-    tabulka,
-    [rocni srazky])
-
-VAR max_rok_max_srazek = 
-MAXX(
-    FILTER(
-    tabulka,
-    [rocni srazky] = maximalni_rocni_srazky),
-    dim_datumy[rok])
-
-RETURN
-CALCULATE(
-    SUM(data[Srazky]),
-dim_datumy[mesic] <= SELECTEDVALUE(dim_datumy[mesic])
-&& dim_datumy[rok] = max_rok_max_srazek)
-
-_____________________________________________________
-
-25 kumulativni suma srazek nejmene destivy rok = 
-VAR tabulka = 
-
--- tabulka se dvemi sloupci, v jednom budou roky, ve druhém roční srážky
-
-ADDCOLUMNS(
-ALL(dim_datumy[rok]),
-"rocni srazky",
-CALCULATE(SUM(data[Srazky]),ALL(dim_datumy[mesic])))
-
-VAR minimalni_rocni_srazky = 
-MINX(
-    tabulka,
-    [rocni srazky])
-
-VAR max_rok_max_srazek = 
-MAXX(
-    FILTER(
-    tabulka,
-    [rocni srazky] = minimalni_rocni_srazky),
-    dim_datumy[rok])
-
-RETURN
-CALCULATE(
-    SUM(data[Srazky]),
-dim_datumy[mesic] <= SELECTEDVALUE(dim_datumy[mesic])
-&& dim_datumy[rok] = max_rok_max_srazek)
-
+_______________________________________
