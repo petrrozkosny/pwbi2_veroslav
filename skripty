@@ -275,7 +275,6 @@ dim_datumy[rok] = SELECTEDVALUE(dim_datumy[rok]) - 1
 && dim_datumy[mesic] <= SELECTEDVALUE(dim_datumy[mesic]))
 
 ___________________________________________________
-
 24 kumulativni suma srazek nejdestivejsi rok = 
 VAR tabulka = 
 
@@ -299,7 +298,6 @@ MAXX(
     dim_datumy[rok])
 
 RETURN
-// CALCULATE(
-//     SUM(data[Srazky]),
-// dim_datumy[mesic] <= SELECTEDVALUE(dim_datumy[mesic]))
-max_rok_max_srazek
+CALCULATE(
+    SUM(data[Srazky]),
+dim_datumy[mesic] <= SELECTEDVALUE(dim_datumy[mesic]))
